@@ -1,0 +1,35 @@
+{
+  "name": "tallyforms",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker automation tools for Tally forms",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "npm run cache:update && wrangler deploy --env=\"\"",
+    "deploy:prod": "npm run cache:update && wrangler deploy --env production",
+    "tail": "wrangler tail --env=\"\"",
+    "tail:prod": "wrangler tail --env production",
+    "kv:create": "wrangler kv namespace create TALLYFORMS",
+    "kv:create:preview": "wrangler kv namespace create TALLYFORMS --preview",
+    "cache:update": "node -e \"import('fs').then(fs => fs.writeFileSync('cache_version.js', '// Cache version management\\n// This file is updated automatically on deployment to bust caches\\n// Convert timestamp to base36 for compact representation\\nexport const CACHE_VERSION = \\'' + Date.now().toString(36) + '\\';'))\"",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
+  },
+  "keywords": [
+    "cloudflare-worker",
+    "tally",
+    "forms",
+    "automation",
+    "date-fields"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.31.0",
+    "wrangler": "^4.24.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

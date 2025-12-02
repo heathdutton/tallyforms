@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tally Forms Tweaks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tally Forms Tweaks</h1>
+            <p>Automatically manage date field limitations for your Tally forms</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Step 1: Connect Your Tally Account</h2>
+
+                <div class="form-group">
+                    <label for="apiKey">Tally API Key</label>
+                    <input
+                        type="password"
+                        id="apiKey"
+                        placeholder="Enter your Tally API key"
+                        class="form-input"
+                    >
+                    <small>Get your API key from <a href="https://tally.so/settings/api-keys" target="_blank">tally.so/settings/api-keys</a></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="timezone">Your Timezone</label>
+                    <select id="timezone" class="form-input">
+                        <option value="">Detecting...</option>
+                    </select>
+                    <small>Date limits will update based on this timezone</small>
+                </div>
+
+                <button id="loadFormsBtn" class="btn btn-primary">Load My Forms</button>
+
+                <div id="loadingIndicator" class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <span>Loading forms...</span>
+                </div>
+            </section>
+
+            <section id="formsSection" class="forms-section hidden">
+                <h2>Step 2: Select a Form</h2>
+
+                <div id="formsList" class="forms-list">
+                    <!-- Forms will be populated here -->
+                </div>
+            </section>
+
+            <section id="fieldsSection" class="fields-section hidden">
+                <h2>Step 3: Configure Date Field Limits</h2>
+
+                <div class="selected-form-info">
+                    <strong>Selected Form:</strong> <span id="selectedFormName"></span>
+                </div>
+
+                <div id="dateFieldsList" class="date-fields-list">
+                    <!-- Date fields will be populated here -->
+                </div>
+
+                <div class="action-buttons">
+                    <button id="saveConfigBtn" class="btn btn-primary">Save Configuration</button>
+                    <button id="backToFormsBtn" class="btn btn-secondary">Back to Forms</button>
+                </div>
+            </section>
+
+            <section id="successSection" class="success-section hidden">
+                <div class="success-message">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <path fill="#27ae60" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                    </svg>
+                    <h3>Configuration Saved!</h3>
+                    <p>Your date field limits have been applied immediately and will be updated automatically every hour.</p>
+                    <button id="configureAnotherBtn" class="btn btn-primary">Configure Another Form</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Rate limit: 5 forms per day</p>
+            <p>Date limits apply immediately and refresh hourly based on your timezone</p>
+            <p>Not affiliated with Tally Forms</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
